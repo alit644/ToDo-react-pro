@@ -7,16 +7,6 @@
   pointer-events: none;
 }
 
-
-
-
-.title{
-  text-align: center;
-  color: #fff;
-  padding: 10px 20px;
-  margin: 0 auto;
-  background-color: #61dafb;
-}
 .errorPara{
   color: orangered;
 }

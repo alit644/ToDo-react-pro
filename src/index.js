@@ -14,7 +14,7 @@ import Javascript from './pages/Javascript';
 
 const router = createBrowserRouter([
   {
-    path: "/Home",
+    path: "/",
     element: <Home />,
     errorElement: <h1 className='errorPara'>not available</h1>,
   },
