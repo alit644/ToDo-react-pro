@@ -4,15 +4,16 @@ import MainContent from '../comp/MainContent';
 import { Helmet } from 'react-helmet-async';
 
 const Css = () => {
+
   return (
     <>
      <Helmet>
         <title>Css Page</title>
       </Helmet>
-      <Header />
-      <MainContent mainPage="Css" />
-
-      <Footer />
+        <Header />
+        <MainContent mainPage="Css" />
+      
+        <Footer />
     </>
   );
 };

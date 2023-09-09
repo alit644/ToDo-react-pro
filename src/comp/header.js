@@ -1,18 +1,23 @@
-
-
-
-import React from 'react';
-import './Header.css';
-import { Link ,NavLink  } from "react-router-dom";
+import React from "react";
+import "./Header.css";
+import './theme.css';
+import { Link, NavLink } from "react-router-dom";
+import {useContext } from "react";
+import ThemeContext from "../context/ThemeContext";
 const Header = () => {
+  const {theme , changeTheme} = useContext(ThemeContext);
+
   return (
     <div>
-          <header className="hide-when-mobile">
+      <header className={`hide-when-mobile`}>
         <h1>
-          <Link to="/">
-          Courses 4 Arab
-          </Link>
+          <Link to="/">Courses 4 Arab</Link>
         </h1>
+
+        <button onClick={() => {
+          changeTheme(theme === "light" ? "dark" : "light")
+        }} className="themeBtn">{theme}</button>
+
         <ul className="flex">
           <li className="main-list">
             <NavLink className="main-link" to="/Html">
@@ -71,7 +76,9 @@ const Header = () => {
       </header>
 
       <header className="show-when-mobile">
-        <h1>Courses 4 Arab</h1>
+        <Link to="/">
+          <h1>Courses 4 Arab</h1>
+        </Link>
         <label className="absolute" htmlFor="burger">
           <i className="fas fa-bars" />
         </label>
@@ -79,7 +86,9 @@ const Header = () => {
         <div className="show-on-click">
           <div className="main-div">
             <label htmlFor="html">
-              HTML <i className="fas fa-plus" />
+              <NavLink to="/Html">
+                HTML <i className="fas fa-plus" />
+              </NavLink>
             </label>
             <input id="html" type="checkbox" />
             <ul className="sub-div">
@@ -96,7 +105,9 @@ const Header = () => {
           </div>
           <div className="main-div">
             <label htmlFor="css">
-              CSS <i className="fas fa-plus" />
+              <NavLink to="/Css">
+                Css <i className="fas fa-plus" />
+              </NavLink>
             </label>
             <input id="css" type="checkbox" />
             <ul className="sub-div">
@@ -127,7 +138,9 @@ const Header = () => {
           </div>
           <div className="main-div">
             <label htmlFor="js">
-              JavaScript <i className="fas fa-plus" />
+              <NavLink to="/Javascript">
+                Javascript <i className="fas fa-plus" />
+              </NavLink>
             </label>
             <input id="js" type="checkbox" />
             <ul className="sub-div">
@@ -140,6 +153,6 @@ const Header = () => {
       </header>
     </div>
   );
-}
+};
 
 export default Header;
