@@ -1,0 +1,47 @@
+.forgot-pass{
+  background-color: whitesmoke;
+  width: 380px;
+  height: 330px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  scale: 0;
+  transition: .3s;
+
+}
+
+.show-forgot-form{
+  scale: 1;
+  transition: .3s;
+}
+
+.close{
+  font-size: 22px;
+  color: #444;
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  cursor: pointer; 
+}
+.close:hover{
+  color: orange;
+  font-size: 23px;
+  transform: rotate(180deg);
+  transition: 0.2s;
+
+}
+.forgot-pass p{
+  font-size: 12px;
+  color: #242424;
+}
+.forgotBtn{
+  font-size: 18px;
+  color: #eee;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.forgotBtn:hover{
+  color: orangered;
+}

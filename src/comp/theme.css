@@ -25,3 +25,10 @@
 .dark main{
   color: #fff;
 }
+.light .please{
+  color: #111;
+}
+ .please a{
+  text-decoration: underline;
+  color: aqua;
+}

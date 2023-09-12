@@ -5,6 +5,38 @@
   align-items: center;
 }
 
+
+@keyframes down{
+  0%{
+      transform: translateY(-100px);
+  }
+
+  100%{
+      transform: translateY(0);
+  }
+}
+
+
+header{
+  animation: down 1s 1;
+}
+
+.main-list {
+  padding: 20px;
+  font-size: 19px;
+  position: relative;
+}
+
+.main-link {
+  padding: 8px 15px;
+}
+
+
+.main-link:hover , .main-link.active{
+  color: cyan;
+  box-shadow: 0 0 5px cyan;
+  border-radius: 5px;
+}
 /* ==================
     3. header of mobile
 ===================== */

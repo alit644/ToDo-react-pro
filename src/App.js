@@ -6,11 +6,13 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import Html from './pages/Html';
 import Css from './pages/Css';
 import Javascript from './pages/Javascript';
-
+import SingUp from './pages/SignUp';
+import SingIn from './pages/signIn';
+import EditTask from "pages/edit task/editTask";
 
 
 const router = createBrowserRouter([
@@ -24,6 +26,18 @@ const router = createBrowserRouter([
     element: <Html />,
   },
   {
+    path: "/edit-task",
+    element: <EditTask />,
+  },
+  {
+    path: "/SingUp",
+    element: <SingUp />,
+  },
+  {
+    path: "/SingIn",
+    element: <SingIn />,
+  },
+  {
     path: "/Css",
     element: <Css />,
   },
@@ -34,6 +48,7 @@ const router = createBrowserRouter([
 ])
 
 function App() {
+
   const {theme} = useContext(ThemeContext);
 
   return (

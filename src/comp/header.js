@@ -1,11 +1,16 @@
 import React from "react";
 import "./Header.css";
-import './theme.css';
+import "./theme.css";
 import { Link, NavLink } from "react-router-dom";
-import {useContext } from "react";
+import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase/confing";
+import { getAuth, signOut } from "firebase/auth";
 const Header = () => {
-  const {theme , changeTheme} = useContext(ThemeContext);
+  const [user, loading, error] = useAuthState(auth);
+  const { theme, changeTheme } = useContext(ThemeContext);
 
   return (
     <div>
@@ -14,64 +19,66 @@ const Header = () => {
           <Link to="/">Courses 4 Arab</Link>
         </h1>
 
-        <button onClick={() => {
-          changeTheme(theme === "light" ? "dark" : "light")
-        }} className="themeBtn">{theme}</button>
+        <button
+          onClick={() => {
+            changeTheme(theme === "light" ? "dark" : "light");
+          }}
+          className="themeBtn"
+        >
+          {theme}
+        </button>
 
         <ul className="flex">
-          <li className="main-list">
-            <NavLink className="main-link" to="/Html">
-              HTML
-            </NavLink>
-            {/* <ul className="sub-ul">
-              <li>
-                <a href="">Full Course</a>
-              </li>
-              <li>
-                <a href="">Crash Course</a>
-              </li>
-              <li>
-                <a href="">learn in 1h</a>
-              </li>
-            </ul> */}
-          </li>
-          <li className="main-list">
-            <NavLink className="main-link" to="/Css">
-              CSS
-            </NavLink>
-            {/* <ul className="sub-ul">
-              <li>
-                <a href="">Full Course</a>
-              </li>
-              <li>
-                <a href="">CSS Examples</a>
-              </li>
-              <li className="mini-projects">
-                <a href="">mini projects&nbsp; + </a>
-                <ul className="sub-sub-ul">
-                  <li>
-                    <a href="">project 1</a>
-                  </li>
-                  <li>
-                    <a href="">project 2</a>
-                  </li>
-                  <li>
-                    <a href="">project 3</a>
-                  </li>
-                </ul>
-              </li>
-            </ul> */}
-          </li>
-          <li className="main-list">
-            <NavLink className="main-link" to="/Javascript">
-              JavaScript
-            </NavLink>
-            {/* <ul className="sub-ul sub-of-js">
-              <li>
-                <a href="">coming soon🔥</a>
-              </li>
-            </ul> */}
-          </li>
+          {!user && (
+            <li className="main-list">
+              <NavLink className="main-link" to="/SingIn">
+                Sign-in
+              </NavLink>
+            </li>
+          )}
+
+          {!user && (
+            <li className="main-list">
+              <NavLink className="main-link" to="/SingUp">
+                Sign-up
+              </NavLink>
+            </li>
+          )}
+
+          {user && (
+            <li className="main-list">
+              <NavLink
+                onClick={() => {
+                  signOut(auth)
+                    .then(() => {
+                      // Sign-out successful.
+                    })
+                    .catch((error) => {
+                      // An error happened.
+                    });
+                }}
+                className="main-link"
+              >
+                Sign-out
+              </NavLink>
+            </li>
+          )}
+
+          {user && (
+            <li className="main-list">
+              <NavLink className="main-link" to="/Html">
+                HTML
+              </NavLink>
+            </li>
+          )}
+
+          {user && (
+            <li className="main-list">
+              <NavLink className="main-link" to="/Javascript">
+                profile
+              </NavLink>
+            </li>
+          )}
         </ul>
       </header>
 
@@ -104,37 +111,18 @@ const Header = () => {
             </ul>
           </div>
           <div className="main-div">
-            <label htmlFor="css">
-              <NavLink to="/Css">
-                Css <i className="fas fa-plus" />
+            <label htmlFor="sing">
+              <NavLink to="/SingUp">
+                Sing Up <i className="fas fa-plus" />
               </NavLink>
             </label>
-            <input id="css" type="checkbox" />
-            <ul className="sub-div">
-              <li>
-                <a href="">Full Course</a>
-              </li>
-              <li>
-                <a href="">CSS Examples</a>
-              </li>
-              <li>
-                <label className="mini-projects" htmlFor="mini">
-                  mini projects <i className="fas fa-plus" />
-                </label>
-                <input id="mini" type="checkbox" />
-                <ul className="sub-sub-div">
-                  <li>
-                    <a href="">project 1</a>
-                  </li>
-                  <li>
-                    <a href="">project 2</a>
-                  </li>
-                  <li>
-                    <a href="">project 3</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+          </div>
+          <div className="main-div">
+            <label htmlFor="sing">
+              <NavLink to="/SingIn">
+                Sing In <i className="fas fa-plus" />
+              </NavLink>
+            </label>
           </div>
           <div className="main-div">
             <label htmlFor="js">
